@@ -1,0 +1,23 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Lead {
+  id          Int      @id @default(autoincrement())
+  nome        String
+  endereco    String
+  telefone    String?
+  isWhatsapp  Boolean  @default(false)
+  email       String?
+  cnpj        String?
+  termoBusca  String
+  dataCriacao DateTime @default(now())
+
+  @@index([termoBusca])
+  @@index([nome])
+}
